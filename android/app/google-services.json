@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "827510167007",
+    "project_id": "snscanner-e22af",
+    "storage_bucket": "snscanner-e22af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827510167007:android:35f7bed78cb36fa22f206a",
+        "android_client_info": {
+          "package_name": "com.example.snscanner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG5gzIhtg6wIm3XL0976I-MxMzYZ5vvIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
