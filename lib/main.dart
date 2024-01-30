@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -92,9 +93,25 @@ class _ScannerPageState extends State<ScannerPage> {
     );
   }
 
+  void submitData() {
+    CollectionReference collectionReference =
+        FirebaseFirestore.instance.collection('sn_collector');
+
+    for (int i = 0; i < _scanResult.length; i++) {
+      Map<String, dynamic> items = {
+        "sn": _scanResult[i],
+        "dateTime": _dateResult[i],
+        "location": "${_latResult[i]} , ${_longResult[i]}"
+      };
+      collectionReference.add(items).whenComplete(() {
+        debugPrint("$items");
+      });
+    }
+  }
+
   String getDate() {
     DateTime now = DateTime.now();
-    String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
+    String formattedDate = DateFormat('yyyy-MM-dd – kk:mm:ss').format(now);
     return formattedDate;
   }
 
@@ -198,6 +215,7 @@ class _ScannerPageState extends State<ScannerPage> {
               ElevatedButton(
                 onPressed: () {
                   debugPrint('$lat $long');
+                  submitData();
                   _scanResult.clear();
                   _dateResult.clear();
                   _latResult.clear();
